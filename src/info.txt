@@ -1,0 +1,11 @@
+zulip (lean)
+ ```
+    ```
+
+Module <=> ev avec anneau au lieu de corps (field en anglais)
+
+Objectif TER,
+
+introduction to commutative algebra M F Atiyah I G MacDonald (ref) ch 3
+Graduate Texts in Mathematics; the geometry of schemes (David Eisenbud Joe Harris)
+Elements de mathématiques Algèbre commutative (N Bourbaki)
