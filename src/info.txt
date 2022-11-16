@@ -9,3 +9,12 @@ Objectif TER,
 introduction to commutative algebra M F Atiyah I G MacDonald (ref) ch 3
 Graduate Texts in Mathematics; the geometry of schemes (David Eisenbud Joe Harris)
 Elements de mathématiques Algèbre commutative (N Bourbaki)
+
+
+Git 
+
+git commit -a
+    ouvre une fenêtre, on appuie sur i, puis un nom (de l'etiquette) court et sans accent, esc, :wq
+git push : envoyer/met à jour les fichiers online avec etiquettes
+git pull : recuperer/met à jour les fichiers online sur le pc
+-a : option all, peut être remplacer par nomdefichier
