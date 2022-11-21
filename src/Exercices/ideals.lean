@@ -2,7 +2,12 @@ import ring_theory.ideal.basic
 
 variables {R S : Type} [comm_ring R] [comm_ring S] (I : ideal R)
 
-example (a b : R) : a ∈ I → b ∈ I → (a + b) ∈ I := sorry
+example (a b : R) : a ∈ I → b ∈ I → (a + b) ∈ I :=
+begin
+  intros a b,
+  --apply add_mem a b,
+  
+end
 
 example (a x : R) : a ∈ I → (a * x) ∈ I ∧ (x * a) ∈ I := sorry
 
