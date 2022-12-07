@@ -8,7 +8,11 @@ Voici une liste d'examples à faire une fois que vous aurez terminé le premier 
 de Atiyah-Macdonald -/
 
 
-example (a b : R) : a ∈ I → b ∈ I → (a + b) ∈ I := sorry
+example (a b : R) : a ∈ I → b ∈ I → (a + b) ∈ I :=
+begin
+  intros ha hb,
+
+end
 
 example (a x : R) : a ∈ I → (a * x) ∈ I ∧ (x * a) ∈ I := sorry
 
