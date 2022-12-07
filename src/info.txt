@@ -10,7 +10,6 @@ introduction to commutative algebra M F Atiyah I G MacDonald (ref) ch 3
 Graduate Texts in Mathematics; the geometry of schemes (David Eisenbud Joe Harris)
 Elements de mathématiques Algèbre commutative (N Bourbaki)
 
-
 Git 
 
 git commit -a
@@ -18,3 +17,6 @@ git commit -a
 git push : envoyer/met à jour les fichiers online avec etiquettes
 git pull : recuperer/met à jour les fichiers online sur le pc
 -a : option all, peut être remplacer par nomdefichier
+
+
+Try change and restart
