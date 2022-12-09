@@ -12,12 +12,14 @@ begin
 end
 
 
-example (P Q : Prop) : P → (Q → P ∧ Q) := --les paranthèses sont inutiles
+example (P Q R : Prop) : (R → P) ∧ (P → Q) → (R → Q) :=
 begin
-  intros hP hQ,
-  split,
-  exact hP,
-  exact hQ,
+  intro hPQR,
+  intro hR,
+  cases hPQR with hRP hPQ,
+  apply hPQ,
+  apply hRP,
+  exact hR,
 end
 
 end vilnius
