@@ -38,6 +38,7 @@ end
 Exemple avec les limites
 
 -/
+
 definition is_limit (a : ℕ → ℝ) (l : ℝ) : Prop :=
 ∀ ε > 0, ∃ N, ∀ n ≥ N, | a n - l | < ε
 
