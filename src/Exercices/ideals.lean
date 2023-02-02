@@ -11,7 +11,7 @@ de Atiyah-Macdonald -/
 example (a b : R) : a ∈ I → b ∈ I → (a + b) ∈ I :=
 begin
   intros ha hb,
-exact I.add_mem ha hb, /- différence entre I.add_mem et add_mem ? -/
+  exact I.add_mem ha hb,
 end
 
 
@@ -29,6 +29,8 @@ end
 /- Est-ce que vous pouvez expliquer pourquoi l'énoncé "la préimage d'un idéal par un morphisme
 d'anneaux" est une `définition` et pas un `lemme`? -/
 definition preimage (f : R →+* S) (J : ideal S) : (ideal R) :=
+/- "_" va afficher une ampoule et me permet de générer le squelette nécessaire pour consrtuire le terme
+avce begin end, on peut utiliser "fconstructor" pour split le goal dans un ordre "logique"-/
 { carrier := {x : R | f x ∈ J},
   add_mem' :=
   begin
@@ -47,11 +49,18 @@ definition preimage (f : R →+* S) (J : ideal S) : (ideal R) :=
     intros x r hfr,
     simp only [smul_eq_mul, set.mem_set_of_eq, map_mul],
     apply J.smul_mem,
-    sorry,
+    apply hfr,
   end
    }
 
-example (f : R →+* S) (J : ideal S) (hJ: J.is_prime) : (preimage f J).is_prime := sorry
+example (f : R →+* S) (J : ideal S) (hJ: J.is_prime) : (preimage f J).is_prime :=
+begin
+  let h1 := hJ.1,
+  fconstructor,
+  by_contradiction,
+  apply h1,
+  sorry,
+end, 
 
 /- Est-ce que vous pouvez expliquer pourquoi l'énoncé "l'intersection de deux idéaux est un idéal" est
 une `définition` et pas un `lemme`? -/
@@ -62,4 +71,8 @@ definition intersection (J : ideal R) : ideal R :=
   smul_mem' := sorry }
 
 -- Pourquoi l'exemple suivant ne compile pas, même avec la définition précédente?
-example (J : ideal R) (x y : R) : x ∈ I → x ∈ J → x ∈ I ∩ J :=
+example (J : ideal R) (x y : R) : x ∈ I → x ∈ J → x ∈ intersection J I :=
+begin
+  intros hI hJ,
+  sorry,
+end,

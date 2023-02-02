@@ -4,6 +4,16 @@ zulip (lean)
 
 Module <=> ev avec anneau au lieu de corps (field en anglais)
 
+definition constuit un terme d'un type donner. Donc il faut nécessairement lui construire un terme pour lui montrer que ce n'est pas un type vide
+structure construit un type. il n'est donc pas toujours utiliser := sauf pour expliciter les termes qu'il contient
+un ensemble est une fonction : set R : R -> Prop∈ I
+    x ∈ I est de type True ; c'est un terme de Prop 
+
+ideal : I.add_mem ici permet à lean d'aller chercher le add.mem dans le namespace ideal
+        I.smul_mem ici renvoie une propriété exacte propre à I.
+
+top : \top 
+
 Objectif TER,
 
 introduction to commutative algebra M F Atiyah I G MacDonald (ref) ch 3
@@ -17,6 +27,3 @@ git commit -a
 git push : envoyer/met à jour les fichiers online avec etiquettes
 git pull : recuperer/met à jour les fichiers online sur le pc
 -a : option all, peut être remplacer par nomdefichier
-
-
-Try change and restart
