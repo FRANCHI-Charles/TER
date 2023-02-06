@@ -57,8 +57,12 @@ example (f : R →+* S) (J : ideal S) (hJ: J.is_prime) : (preimage f J).is_prime
 begin
   let h1 := hJ.1,
   fconstructor,
+  swap,
+  intros x y hxy,
+
   by_contradiction,
   apply h1,
+  
   sorry,
 end, 
 
@@ -66,13 +70,45 @@ end,
 une `définition` et pas un `lemme`? -/
 definition intersection (J : ideal R) : ideal R :=
 { carrier := I ∩ J,
-  add_mem' := sorry,
-  zero_mem' := sorry,
-  smul_mem' := sorry }
+  add_mem' :=
+  begin
+    intros a b ha hb,
+    cases ha with hai haj,
+    cases hb with hbi hbj,
+    split,
+    apply I.add_mem,
+    exact hai,
+    exact hbi,
+    apply J.add_mem,
+    exact haj,
+    exact hbj,
+  end,
+
+  zero_mem' := 
+  begin
+    split,
+    exact I.zero_mem',
+    exact J.zero_mem',
+  end,
+
+  smul_mem' :=
+  begin
+    intros c x hx,
+    cases hx with hxi hxj,
+    split,
+    apply I.smul_mem',
+    exact hxi,
+    apply J.smul_mem',
+    exact hxj,
+  end }
+
+
 
 -- Pourquoi l'exemple suivant ne compile pas, même avec la définition précédente?
 example (J : ideal R) (x y : R) : x ∈ I → x ∈ J → x ∈ intersection J I :=
 begin
   intros hI hJ,
-  sorry,
-end,
+  split,
+  exact hJ,
+  exact hI,
+end
