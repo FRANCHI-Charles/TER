@@ -55,15 +55,14 @@ avce begin end, on peut utiliser "fconstructor" pour split le goal dans un ordre
 
 example (f : R →+* S) (J : ideal S) (hJ: J.is_prime) : (preimage f J).is_prime :=
 begin
-  let h1 := hJ.1,
+  let h1 := hJ.1, /-différence entre have and let ?-/
   fconstructor,
-  swap,
-  intros x y hxy,
-
   by_contradiction,
   apply h1,
+  rw J.eq_top_iff_one,
+  rw ← f.map_one,
   
-  sorry,
+  -- apply (preimage f J).carrier,
 end, 
 
 /- Est-ce que vous pouvez expliquer pourquoi l'énoncé "l'intersection de deux idéaux est un idéal" est
