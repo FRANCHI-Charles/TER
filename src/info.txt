@@ -6,8 +6,8 @@ Module <=> ev avec anneau au lieu de corps (field en anglais)
 
 definition constuit un terme d'un type donner. Donc il faut nécessairement lui construire un terme pour lui montrer que ce n'est pas un type vide
 structure construit un type. il n'est donc pas toujours utiliser := sauf pour expliciter les termes qu'il contient
-un ensemble est une fonction : set R : R -> Prop∈ I
-    x ∈ I est de type True ; c'est un terme de Prop 
+un ensemble est une fonction : set R : R -> Prop
+    x ∈ I est un type True ; c'est un terme de Prop 
 
 ideal : I.add_mem ici permet à lean d'aller chercher le add.mem dans le namespace ideal
         I.smul_mem ici renvoie une propriété exacte propre à I.
