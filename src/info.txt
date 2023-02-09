@@ -14,6 +14,36 @@ ideal : I.add_mem ici permet à lean d'aller chercher le add.mem dans le namespa
 
 top : \top 
 
+
+
+tactic liste :
+all_goals{}
+intros
+fconstructor
+by_contradiction
+convert_to
+swap
+split
+simp (only)
+have
+let
+apply
+rewrite
+nth_rewrite_lhs
+exact
+assumption
+use (pour les il existe)
+specialize (pour les pour tout)
+cases (with)
+
+
+
+
+
+
+
+
+
 Objectif TER,
 
 introduction to commutative algebra M F Atiyah I G MacDonald (ref) ch 3
