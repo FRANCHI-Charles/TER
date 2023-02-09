@@ -55,13 +55,15 @@ avce begin end, on peut utiliser "fconstructor" pour split le goal dans un ordre
 
 example (f : R →+* S) (J : ideal S) (hJ: J.is_prime) : (preimage f J).is_prime :=
 begin
-  { let h1 := hJ.1, /-différence entre have and let ?-/
+  let h1 := hJ.1, /-différence entre have and let ?-/
     fconstructor,
-    rw ideal.ne_top_iff_one,
-    have : (f 1) ∉ J,
-    rw map_one,
-    apply (ideal.ne_top_iff_one J).mp h1,
-    exact this },
+    { rw ideal.ne_top_iff_one,
+      have jj := (ideal.ne_top_iff_one J).mp h1,
+      intro h,
+      have : (f 1) ∈  J := h,
+      rw map_one at this,
+      exact jj this,
+  },
   { sorry,
 
   },
