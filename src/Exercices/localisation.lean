@@ -7,9 +7,19 @@ variables {S : submonoid A} [is_localization S B]
 -- L'hypothèse `is_localization S B` signifie que `B` est isomorphe au localisé `S⁻¹ B`.
 
 
-lemma prod_units (u v : A) : is_unit u → is_unit v → is_unit (u * v) := sorry
+lemma prod_units (u v : A) : is_unit u → is_unit v → is_unit (u * v) :=
+begin
+  intros hu hv,
+  simp only [is_unit.mul_iff],
+  split,
+  exact hu,
+  exact hv,
+end
 
-lemma inv_unit (u v : Aˣ) : is_unit (u⁻¹) := sorry
+lemma inv_unit (u v : Aˣ) : is_unit (u⁻¹) :=
+begin
+  
+end
 
 lemma becomes_unit (a : A) : a ∈ S → is_unit (algebra_map A B a) := sorry
 
