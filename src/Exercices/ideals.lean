@@ -70,12 +70,22 @@ begin
   rw J.eq_top_iff_one,
   rw ← f.map_one,
   convert_to (1 : R) ∈ preimage f J,
+  rw ← ideal.eq_top_iff_one,
+  exact h,
+
   --   have : (1:R) ∈ preimage f J,
   --     rw ← ideal.eq_top_iff_one,
   --     exact h,
   -- exact this,
 
   -- apply (preimage f J).carrier,
+
+
+  intros x y hxy,
+  convert_to (f x ∈ J) ∨ (f y ∈ J),
+  apply hJ.mem_or_mem',
+  rw ← map_mul,
+  exact hxy,
 
 end, 
 
