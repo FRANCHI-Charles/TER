@@ -18,7 +18,32 @@ end
 
 lemma inv_unit (u v : Aˣ) : is_unit (u⁻¹) :=
 begin
+  apply units.is_unit u⁻¹ ,
+  -- use u⁻¹,
+  -- use u,
+  -- exact units.inv_mul u,
+  /-
+  invalid type ascription, term has type
+    ↑u⁻¹ * ↑u = 1
+  but is expected to have type
+    u⁻¹ * u = 1
+  state:
+  3 goals
+  A : Type u_1,
+  _inst_1 : comm_ring A,
+  u v : Aˣ
+  ⊢ u⁻¹ * u = 1
   
+  A : Type u_1,
+  _inst_1 : comm_ring A,
+  u v : Aˣ
+  ⊢ u * u⁻¹ = 1
+  
+  A : Type u_1,
+  _inst_1 : comm_ring A,
+  u v : Aˣ
+  ⊢ ↑{val := u⁻¹, inv := u, val_inv := _, inv_val := _} = u⁻¹
+  -/
 end
 
 lemma becomes_unit (a : A) : a ∈ S → is_unit (algebra_map A B a) := sorry
