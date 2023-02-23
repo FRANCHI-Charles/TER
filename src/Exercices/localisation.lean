@@ -16,11 +16,24 @@ begin
   exact hv,
 end
 
+variable (f : A →+* A)
+#check (f : A →+ A)
+#check (f: A → A)
+
 lemma inv_unit (u v : Aˣ) : is_unit (u⁻¹) :=
 begin
-  apply units.is_unit u⁻¹ ,
-  -- use u⁻¹,
-  -- use u,
+  -- apply units.is_unit u⁻¹ ,
+  use u⁻¹,
+  use u,
+  exact mul_left_inv u, --mais `simp` aurait marché! Et si vous écrivez `squeeze_simp` il vous dit
+  --comment il a fait! Pensez bien que si on doit suffrir pour montrer que dans un groupe le produit
+  -- d'un élément avec son inverse fait l'identité, on peut se tirer une balle! C'est fort probablement
+  -- quelque chose que `simp` doit savoir résoudre!
+
+
+  sorry,
+  -- apply inv_mul_cancel_of_invertible,
+  -- exact u.inv_val,
   -- exact units.inv_mul u,
   /-
   invalid type ascription, term has type
