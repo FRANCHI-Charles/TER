@@ -33,7 +33,16 @@ begin
   simp only [units.coe_mk],
 end
 
-lemma becomes_unit (a : A) : a ∈ S → is_unit (algebra_map A B a) := sorry
+example (a : S) : is_unit (algebra_map A B a) :=
+begin
+  exact _inst_4.map_units a,
+end
+
+lemma becomes_unit (a : A) : a ∈ S → is_unit (algebra_map A B a) :=
+begin
+  intro ha,
+  --rw add_submonoid.mem_carrier
+end
 
 lemma from_S (a : A) (v : B) (h : algebra_map A B a = v) : ∃ s : S, mk' B a s = v := sorry
 
