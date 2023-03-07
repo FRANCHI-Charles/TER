@@ -35,13 +35,50 @@ end
 
 example (a : S) : is_unit (algebra_map A B a) :=
 begin
-  exact _inst_4.map_units a,
+  apply map_units,
 end
 
 lemma becomes_unit (a : A) : a ∈ S → is_unit (algebra_map A B a) :=
 begin
   intro ha,
-  --rw add_submonoid.mem_carrier
+ -- J'imagine qu'on est d'accord qu'il faut "en gros" faire la même chose que dans l'`exemple l.36`:
+ -- Le problème est que si on fait
+--  `apply map_units`, --on reçoit l'erreur
+--  `invalid apply tactic, failed to unify`
+--   `is_unit (⇑(algebra_map A B) a)` 
+--  	 `with`
+--   `is_unit (⇑(algebra_map ?m_3 ?m_1) ↑?m_7)`
+-- Essayons de le comprendre: on voudrait `?m_3=A`, puis `?m_1=B` et `↑?m_7=a`. Pour voir ce qui
+-- se passe, il est parfois commode d'utiliser un `have :=`, qui ne mène nulle part mais nous fait
+-- voir ce que Lean attend: par exemple,
+have premier := map_units,
+-- fait apparaître un terme `premier` qui demande clairement en variables un Type `S` qui doit être un
+-- `comm_semiring`, puis un terme `?m_1` qui n'apparaît pas mais dont on comprend que `S` doit
+-- être une algèbre sur `?m_1` (regardez `_inst_3`), et après un terme `self` qui doit être une
+-- preuve que `S` est un localisé à `?m_3`. Ces variables bizarres sont nommées ainsi automatiquement
+-- par Lean, parce que si on lui fournit un terme de type `is_localization ?m_3 S` il comprendra qui
+-- est `?m_3`. Chez nous, `B` est un localisé de `A` à `S`, donc à la fin on voudra
+-- * ?m_1=A
+-- * ?m_3=S
+-- * S = B
+-- On peut alors améliorer `premier` en
+have deuxieme := map_units B,
+-- et on aurait même envie de prendre `y = a` maintenant... *MAIS* on voit bien que `y` doit être un
+-- terme de type `↥?m_3 = ↥S` et non pas de type `S`... il y a une flèchette vers le haut. En effet
+-- `have := deuxieme a,`
+-- (que je vous conseille de tester) donne un erreur. D'ailleurs, vous voyez que si vous
+-- clickez sur `↥?m_3` vous voyez que ça doit être un `Type` alors que `?m_3` est un `submonoid`...
+-- Le point est que `a` est un terme de type `A` et `deuxieme` veut un terme de type `S`: on peut le
+-- créer!
+let b : S := ⟨a, ha⟩,
+-- Grâce à `ha`, qui nous dit que `a` *appartient* à `S`, on a crée un terme de type `↥S`, où la
+-- flêche indique qu'on regarde maintenant `S` comme un type à part entière. On peut donc conclure
+-- avec
+  exact map_units B b,
+  -- (si vous voyez plein de goals, encore, c'est parce que j'ai introduit plein de choses à vérifier
+  -- dans `premier` et `deuxième`: si vous les commentez, vous voyez le `goals_accomplished`.
+  -- D'ailleurs, on a pas besoin de déclarer `b`: on pourrait simplement faire
+  -- exact map_units B ⟨a, ha⟩),
 end
 
 lemma from_S (a : A) (v : B) (h : algebra_map A B a = v) : ∃ s : S, mk' B a s = v := sorry
