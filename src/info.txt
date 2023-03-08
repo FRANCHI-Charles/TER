@@ -15,7 +15,7 @@ ideal : I.add_mem ici permet à lean d'aller chercher le add.mem dans le namespa
 top : \top 
 
 ⇑f est coercion ; permet de voir un terme d'un certain type X comme un terme d'un autre type Y s'il y a une fonction "standard" de X vers Y
-
+Bˣ : ensemble des élémentes inversible de l'anneau B
 
 tactic liste :
 all_goals{}
