@@ -4,8 +4,11 @@ open is_localization
 
 variables {A : Type*} (B : Type*) [comm_ring A] [comm_ring B] [algebra A B]
 variables {S : submonoid A} [is_localization S B]
--- L'hypothèse `is_localization S B` signifie que `B` est isomorphe au localisé `S⁻¹ B`.
-
+-- L'hypothèse `is_localization S B` signifie que `B` est isomorphe au localisé `S⁻¹ A`.
+/-- The typeclass `is_localization (S : submodule A) B` where `B` is an `A`-algebra
+expresses that `B` is isomorphic to the localization of `A` at `S`. -/
+/-- The typeclass `is_localization (M : submodule R) S` where `S` is an `R`-algebra
+expresses that `S` is isomorphic to the localization of `R` at `M`. -/
 
 lemma prod_units (u v : A) : is_unit u → is_unit v → is_unit (u * v) :=
 begin
@@ -81,7 +84,10 @@ let b : S := ⟨a, ha⟩,
   -- exact map_units B ⟨a, ha⟩),
 end
 
-lemma from_S (a : A) (v : B) (h : algebra_map A B a = v) : ∃ s : S, mk' B a s = v := sorry
+lemma from_S (a : A) (v : B) (h : algebra_map A B a = v) : ∃ s : S, mk' B a s = v :=
+begin
+
+end
 
 lemma unit_from_S (a : A) (v : Bˣ) : a ∈ S → is_unit ((algebra_map A B a) * v):= sorry
 
