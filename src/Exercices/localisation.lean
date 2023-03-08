@@ -51,7 +51,7 @@ begin
 -- Essayons de le comprendre: on voudrait `?m_3=A`, puis `?m_1=B` et `↑?m_7=a`. Pour voir ce qui
 -- se passe, il est parfois commode d'utiliser un `have :=`, qui ne mène nulle part mais nous fait
 -- voir ce que Lean attend: par exemple,
-have premier := map_units,
+-- have premier := map_units,
 -- fait apparaître un terme `premier` qui demande clairement en variables un Type `S` qui doit être un
 -- `comm_semiring`, puis un terme `?m_1` qui n'apparaît pas mais dont on comprend que `S` doit
 -- être une algèbre sur `?m_1` (regardez `_inst_3`), et après un terme `self` qui doit être une
@@ -62,7 +62,7 @@ have premier := map_units,
 -- * ?m_3=S
 -- * S = B
 -- On peut alors améliorer `premier` en
-have deuxieme := map_units B,
+-- have deuxieme := map_units B,
 -- et on aurait même envie de prendre `y = a` maintenant... *MAIS* on voit bien que `y` doit être un
 -- terme de type `↥?m_3 = ↥S` et non pas de type `S`... il y a une flèchette vers le haut. En effet
 -- `have := deuxieme a,`
