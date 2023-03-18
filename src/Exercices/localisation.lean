@@ -113,8 +113,15 @@ avec `a ∈ A` et `s ∈ S` vous pouvez définir l'extension `F` par la formule 
 qui a un sens d'après l'hypothèse que `f(s)` est une unité.
 -/
 
-def extended {f : A →+* C} (hf : ∀ s : S, is_unit (f s)) : (B →+* C) := sorry
+def extended {f : A →+* C} (hf : ∀ s : S, is_unit (f s)) : (B →+* C) :=
+{ to_fun := λ b, f((sec S b).1)*((hf (sec S b).2).unit)⁻¹,
+  map_one' := _,
+  map_mul' := _,
+  map_zero' := _,
+  map_add' := _ }
 
 --***Question:***: Savez-vous quelle est la différence entre les parenthèses `(` et `{`?
+/- les () sont des éléments nécessaires à rentre pour que lean comprenne de quoi on parle, les {} peuvent être déduit
+des autres hypothèses -/
 lemma injective {f : A →+* C} (hf : ∀ s : S, is_unit (f s)) (h_inj: function.injective f) :
   function.injective (extended B hf) := sorry
