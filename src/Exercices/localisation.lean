@@ -4,7 +4,7 @@ open is_localization
 
 variables {A : Type*} (B : Type*) [comm_ring A] [comm_ring B] [algebra A B]
 variables {S : submonoid A} [is_localization S B]
--- L'hypothèse `is_localization S B` signifie que `B` est isomorphe au localisé `S⁻¹ A`.
+-- L'hypothèse `is_localization S B` signifie que `B=S⁻¹ A`.
 /-- The typeclass `is_localization (S : submodule A) B` where `B` is an `A`-algebra
 expresses that `B` is isomorphic to the localization of `A` at `S`. -/
 
@@ -114,7 +114,7 @@ qui a un sens d'après l'hypothèse que `f(s)` est une unité.
 -/
 
 def extended {f : A →+* C} (hf : ∀ s : S, is_unit (f s)) : (B →+* C) :=
-{ to_fun := λ b, f((sec S b).1)*((hf (sec S b).2).unit)⁻¹,
+{ to_fun := λ b, f((sec S b).1) * ((hf (sec S b).2).unit)⁻¹.1,
   map_one' := _,
   map_mul' := _,
   map_zero' := _,
