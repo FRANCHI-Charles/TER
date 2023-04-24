@@ -8,4 +8,4 @@ Il a été effecuté sous la tutelle de [Filippo A. E. Nuccio](https://github.co
 
 ## Présentation générale
 
-Dans le cadre pédagogique d'une licence de mathématiques, j'ai choisit de me concentrer sur un assistant de preuve,
+Dans le cadre pédagogique d'une licence de mathématiques, j'ai choisit de me concentrer sur un assistant de preuve,Lean.
