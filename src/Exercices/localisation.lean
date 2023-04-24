@@ -113,10 +113,25 @@ avec `a ∈ A` et `s ∈ S` vous pouvez définir l'extension `F` par la formule 
 qui a un sens d'après l'hypothèse que `f(s)` est une unité.
 -/
 
+lemma sec_one : sec S (1 : B) = ⟨(1 : A) , (1 : S)⟩ :=
+begin
+  unfold is_localization.sec,
+  simp only [one_mul],
+  rw is_localization.eq_iff_exists S B _ _,
+  
+end
+
+
 def extended {f : A →+* C} (hf : ∀ s : S, is_unit (f s)) : (B →+* C) :=
 { to_fun := λ b, f((sec S b).1) * ((hf (sec S b).2).unit)⁻¹.1,
-  map_one' := _,
-  map_mul' := _,
+  map_one' :=
+  begin
+    simp only [units.val_eq_coe, units.mul_inv_eq_one, is_unit.unit_spec],
+  end,
+  map_mul' :=
+  begin
+    simp only [units.val_eq_coe],
+  end,
   map_zero' := _,
   map_add' := _ }
 
