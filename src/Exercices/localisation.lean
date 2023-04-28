@@ -113,7 +113,6 @@ avec `a ∈ A` et `s ∈ S` vous pouvez définir l'extension `F` par la formule 
 qui a un sens d'après l'hypothèse que `f(s)` est une unité.
 -/
 
-
 -- lemma sec_one : sec S (1 : B) = ⟨(1 : A) , (1 : S)⟩ :=
 -- begin
 --   unfold is_localization.sec,
