@@ -1,6 +1,8 @@
-zulip (lean)
- ```
-    ```
+1. Remplacer dans lean la `def` de l'extension d'un morphisme d'anneaux aux localisés, par la `def` du localisé d'un morphisme entre modules
+1. Me le dire, que je la vérifie
+1. La coder
+
+
 
 Module <=> ev avec anneau au lieu de corps (field en anglais)
 
