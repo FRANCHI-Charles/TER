@@ -15,7 +15,7 @@ begin
 end
 
 
-example (a x : R) : a ∈ I → (a * x) ∈ I ∧ (x * a) ∈ I :=
+example (a x : R) : a ∈ I → a * x ∈ I ∧ x * a ∈ I :=
 begin
   intro ha,
   split,
