@@ -2,6 +2,9 @@ import algebra.module.localized_module
 import ring_theory.localization.basic
 import ring_theory.localization.module
 import algebra.module.linear_map
+import tactic
+
+noncomputable theory
 
 open localized_module
 
@@ -12,20 +15,24 @@ variables {N : Type*} [add_comm_monoid N] [module R N]
 -- variables (hM : localized_module S M) (hN : localized_module S N)
 
 
-lemma mk_wd (f : M →[R] N) : ∀ (p p' : M × S) (h1 : p ≈ p'), mk (f p.1) (p.2) = mk (f p'.1) (p'.2):=
+lemma mk_wd (f : M →[R] N) : ∀ (p p' : M × S), mk p.1 p.2 = mk p'.1 p'.2 →
+  mk (f p.1) (p.2) = mk (f p'.1) (p'.2):=
 begin
   intros x y hr,
-  rw mk_eq,
-  have h : ∃ (u : ↥S), u • x.snd • y.fst = u • y.snd • x.fst,
-
-  swap,
-  cases h with u hu,
+  rw mk_eq at ⊢ hr,
+  obtain ⟨u, hu⟩ := hr,
   use u,
-  have premier := map_smul f,
-  have deuxieme := premier x.2 y.1, --fonctionne, mais je ne peux le faire en une ligne...
-  rw ← deuxieme, -- x.2 ≠ ↑x.2  
+  simp only [submonoid.smul_def, ← mul_action_hom.map_smul] at hu ⊢,
+  rw hu,
 end
 
+lemma mk_wd' (f : M →[R] N) : ∀ (p p' : M × S), p ≈ p' →
+  mk (f p.1) (p.2) = mk (f p'.1) (p'.2):=
+begin
+  intros p p' h,
+  apply mk_wd,
+  simp only [localized_module.mk, prod.mk.eta, h, quotient.eq],
+end
 /-
 1 Trouver la bonne fonction pour le porblème de rw deuxième
 2 Appliquer congr_arg et résoudre
