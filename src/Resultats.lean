@@ -34,17 +34,18 @@ begin
 end
 
 
-def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (localized_module S N) :=
+def extended (f : M →+[R] N) :
+        (localized_module S M) →+[localization S] (localized_module S N) :=
 { to_fun := λ p1, lift_on p1 (λ x, mk (f(x.1)) (x.2)) (mk_wd S f),
   map_smul' :=
   begin
-   intros m x,
-  induction x using localized_module.induction_on with a s,
-  induction m using localization.induction_on with m,
-  rw mk_smul_mk,
-  repeat {rw lift_on_mk},
-  rw mk_smul_mk,
-  simp only [map_smul],
+    intros m x,
+    induction x using localized_module.induction_on with a s,
+    induction m using localization.induction_on with m,
+    rw mk_smul_mk,
+    repeat {rw lift_on_mk},
+    rw mk_smul_mk,
+    simp only [map_smul],
   end,
 
   map_zero' :=
@@ -67,10 +68,11 @@ def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (lo
   end }
 
 
-  theorem extended_comp (f : M →+[R] N) (g : P →+[R] M) : extended S (f.comp g) = (extended S f).comp (extended S g) :=
-  begin
-    apply distrib_mul_action_hom.ext,
-    intro x,
-    induction x using localized_module.induction_on with a s,
-    refl,
-  end
+lemma extended_comp (f : M →+[R] N) (g : P →+[R] M) :
+          extended S (f.comp g) = (extended S f).comp (extended S g) :=
+begin
+  apply distrib_mul_action_hom.ext,
+  intro x,
+  induction x using localized_module.induction_on with a s,
+  refl,
+end
