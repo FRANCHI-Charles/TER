@@ -34,8 +34,7 @@ begin
 end
 
 
-def extended (f : M →+[R] N) :
-        (localized_module S M) →+[localization S] (localized_module S N) :=
+def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (localized_module S N) :=
 { to_fun := λ p1, lift_on p1 (λ x, mk (f(x.1)) (x.2)) (mk_wd S f),
   map_smul' :=
   begin
@@ -69,7 +68,7 @@ def extended (f : M →+[R] N) :
 
 
 lemma extended_comp (f : M →+[R] N) (g : P →+[R] M) :
-          extended S (f.comp g) = (extended S f).comp (extended S g) :=
+  extended S (f.comp g) = (extended S f).comp (extended S g) :=
 begin
   apply distrib_mul_action_hom.ext,
   intro x,
