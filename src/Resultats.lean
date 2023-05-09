@@ -15,28 +15,27 @@ variables {N : Type*} [add_comm_monoid N] [module R N]
 variables {P : Type*} [add_comm_monoid P] [module R P]
 
 
-lemma mk_wd (f : M →+[R] N) : ∀ (p p' : M × S), mk p.1 p.2 = mk p'.1 p'.2 →
+
+lemma mk_wd (f : M →+[R] N) : ∀ (p p' : M × S), p ≈ p' →
   mk (f p.1) (p.2) = mk (f p'.1) (p'.2):=
 begin
-  intros x y hr,
+  intros p p' h,
+  
+  have h2: mk p.1 p.2 = mk p'.1 p'.2 → mk (f p.1) (p.2) = mk (f p'.1) (p'.2),
+  intro hr,
   rw mk_eq at ⊢ hr,
   obtain ⟨u, hu⟩ := hr,
   use u,
   simp only [submonoid.smul_def, ← distrib_mul_action_hom.map_smul] at hu ⊢,
   rw hu,
-end
 
-lemma mk_wd' (f : M →+[R] N) : ∀ (p p' : M × S), p ≈ p' →
-  mk (f p.1) (p.2) = mk (f p'.1) (p'.2):=
-begin
-  intros p p' h,
-  apply mk_wd,
+  apply h2,
   simp only [localized_module.mk, prod.mk.eta, h, quotient.eq],
 end
 
 
 def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (localized_module S N) :=
-{ to_fun := λ p1, lift_on p1 (λ x, mk (f(x.1)) (x.2)) (mk_wd' S f),
+{ to_fun := λ p1, lift_on p1 (λ x, mk (f(x.1)) (x.2)) (mk_wd S f),
   map_smul' :=
   begin
    intros m x,
@@ -74,5 +73,5 @@ def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (lo
     apply distrib_mul_action_hom.ext,
     intro x,
     induction x using localized_module.induction_on with a s,
-    apply rfl,
+    refl,
   end
