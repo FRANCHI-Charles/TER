@@ -20,7 +20,7 @@ lemma mk_wd (f : M →+[R] N) : ∀ (p p' : M × S), p ≈ p' →
   mk (f p.1) (p.2) = mk (f p'.1) (p'.2):=
 begin
   intros p p' h,
-  
+
   have h2: mk p.1 p.2 = mk p'.1 p'.2 → mk (f p.1) (p.2) = mk (f p'.1) (p'.2),
   intro hr,
   rw mk_eq at ⊢ hr,
@@ -51,7 +51,6 @@ def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (lo
   begin
     rw ← zero_mk 1,
     rw lift_on_mk,
-    dsimp only,
     rw map_zero,
     exact zero_mk 1,
   end,

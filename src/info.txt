@@ -1,6 +1,8 @@
-1. Remplacer dans lean la `def` de l'extension d'un morphisme d'anneaux aux localisés, par la `def` du localisé d'un morphisme entre modules
-1. Me le dire, que je la vérifie
-1. La coder
+
+Ce que signifie induction dans le contexte de votre preuve (par ex. à la ligne 43), car il ne s'agit pas de la récurrence usuelle
+Parler de la différence entre rw et apply.
+Parler un peu du rôle de ext à la ligne 74
+
 
 
 
