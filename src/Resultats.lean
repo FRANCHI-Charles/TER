@@ -67,7 +67,7 @@ def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (lo
   end }
 
 
-lemma extended_comp (f : M →+[R] N) (g : P →+[R] M) :
+lemma extended_comp (f : N →+[R] P) (g : M →+[R] N) :
   extended S (f.comp g) = (extended S f).comp (extended S g) :=
 begin
   apply distrib_mul_action_hom.ext,
