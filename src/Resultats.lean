@@ -1,8 +1,5 @@
 import algebra.module.localized_module
-import ring_theory.localization.basic
-import ring_theory.localization.module
 import algebra.module.linear_map
-import tactic
 
 noncomputable theory
 
@@ -33,7 +30,9 @@ begin
   simp only [localized_module.mk, prod.mk.eta, h, quotient.eq],
 end
 
-
+/--If `S` is an submonoid of `R`, a commutative semiring and `f : M → N ` is a
+`R-`additive monoid homomorphisms, then `f` descents to a `loalization S-` additive monoid homomorphisms
+from the localized module of `M` by `S` to the localized module of `N` by `S`-/
 def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (localized_module S N) :=
 { to_fun := λ p1, lift_on p1 (λ x, mk (f(x.1)) (x.2)) (mk_wd S f),
   map_smul' :=
@@ -66,7 +65,7 @@ def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (lo
     simp only [map_add, submonoid.smul_def, ← distrib_mul_action_hom.map_smul],
   end }
 
-
+/--Composition of two extended functions.-/
 lemma extended_comp (f : N →+[R] P) (g : M →+[R] N) :
   extended S (f.comp g) = (extended S f).comp (extended S g) :=
 begin
