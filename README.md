@@ -1,24 +1,43 @@
 # Travail encadré de recherche : localisation et morphisme
 
-Ce projet a pour but d'expliquer et donner les fichiers qui ont permis la création du [morphimse d'anneau de la localisation](https://github.com/FRANCHI-Charles/TER/blob/main/src/Exercices/localisation.lean) dans Lean.
+Dans le cadre pédagogique d'une licence de mathématiques au sein de l'[Université Jean-Monnet](https://www.univ-st-etienne.fr/fr/index.html) de Saint-Etienne, j'ai choisit de me concentrer sur un assistant de preuve, Lean, afin de faire un premier pas dans le milieu de la recherche.
+Ce repository a pour but de donner les fichiers qui ont permis la formalisation de deux théorèmes sur les morphimses de modules localisés dans Lean.
+Ce projet a été effecuté sous la tutelle de [Filippo A. E. Nuccio](https://github.com/faenuccio) en tant qu'Enseignant-Chercheur de [l'institut Camille Jordan](http://math.univ-lyon1.fr/). Je le remercie chaleuresement : sans lui, rien de tout ça n'aurait été possible.
 
-Il a été effecuté sous la tutelle de [Filippo A. E. Nuccio](https://github.com/faenuccio) en tant qu'Enseignant-Chercheur de [l'institut Camille Jordan](http://math.univ-lyon1.fr/).
+Pour plus de détails, je vous invite à consulter le [Mémoire de recherche](https://github.com/FRANCHI-Charles/TER/blob/f55e32aa91734687e79cef8c63889ea892f8b0f0/Memoire.pdf).
 
+Le code des fonctions est également disponible dans le fichier [src/Resultats.lean](https://github.com/FRANCHI-Charles/TER/blob/f55e32aa91734687e79cef8c63889ea892f8b0f0/src/Resultats.lean).
 
-
-## Présentation générale
-
-Dans le cadre pédagogique d'une licence de mathématiques, j'ai choisit de me concentrer sur un assistant de preuve, Lean, afin de faire un premier pas dans le milieu de la recherche.
-L'objectif était de formaliser deux résultats :
-
-
-**Extension d'un Morphisme vers son localisé :**
+## Résultats démontrés
 
 
-$$ f:M \rightarrow N \text{ un morphisme de A-module, avec A un anneau unitaire commutatif, } S^{-1}M, S^{-1}N \text{ les localisés des modules M et N. Alors :}$$
+L'objectif était de formaliser deux résultats, dont les détails des démonstrations sont accessibles dans la partie 3.3 du [Mémoire](https://github.com/FRANCHI-Charles/TER/blob/f55e32aa91734687e79cef8c63889ea892f8b0f0/Memoire.pdf) :
+
+
+**Extension d'un Morphisme de modules vers son localisé :**
+
+Si $f: M \rightarrow N$ est un morphisme de $R$-module, avec $R$ un anneau unitaire commutatif, et $S^{-1}M, S^{-1}N$ sont les localisés des modules $M$ et $N$, alors on peut construire :
 
 $$ S^{-1}f: S^{-1}M \rightarrow S^{-1}N $$
 
 $$ \frac{m}{s} \mapsto \frac{f(m)}{s} $$
 
-$$ \text{est un morphisme des } S^{-1}A \text{-Modules } S^{-1}M\ S^{-1}N.$$
+qui est un morphisme de $S^{-1}R$-Modules.
+
+```lean
+def extended (f : M →+[R] N) : (localized_module S M) →+[localization S] (localized_module S N) :=
+```
+
+**Composition de ces extensions :**
+
+Si $f: N \rightarrow P$ et $g: M \rightarrow N$ sont des morphismes de $R$-module,avec $R$ un anneau unitaire commutatif, alors :
+
+$$S^{-1}(f \circ g) = S^{-1}f \circ S^{-1}g$$
+
+```lean
+lemma extended_comp (f : N →+[R] P) (g : M →+[R] N) : extended S (f.comp g) = (extended S f).comp (extended S g) :=
+```
+
+## Exercices pratiqués
+
+Vous pouvez consultés les exercices effectués afin de s'apporpier Lean et Mathlib dans le dossier [Exercices](https://github.com/FRANCHI-Charles/TER/tree/f55e32aa91734687e79cef8c63889ea892f8b0f0/src/Exercices).
