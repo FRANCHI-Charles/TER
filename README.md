@@ -4,7 +4,7 @@ Dans le cadre pédagogique d'une licence de mathématiques au sein de l'[Univers
 Ce repository contient les fichiers qui ont permis la formalisation de deux théorèmes sur les morphimses de modules localisés dans Lean.
 Ce projet a été effecuté sous la tutelle de [Filippo A. E. Nuccio](https://github.com/faenuccio) en tant qu'Enseignant-Chercheur de [l'institut Camille Jordan](http://math.univ-lyon1.fr/). Je le remercie chaleuresement : sans lui, rien de tout ça n'aurait été possible.
 
-Pour plus de détails, je vous invite à consulter le [Mémoire de recherche](https://github.com/FRANCHI-Charles/TER/blob/f55e32aa91734687e79cef8c63889ea892f8b0f0/Memoire.pdf).
+Pour plus de détails, je vous invite à consulter le [Mémoire de recherche](https://github.com/FRANCHI-Charles/TER/blob/f55e32aa91734687e79cef8c63889ea892f8b0f0/Memoire.pdf) (téléchargez-le afin d'avoir les hyperliens fonctionnels).
 
 Le code des fonctions est également disponible dans le fichier [src/Resultats.lean](https://github.com/FRANCHI-Charles/TER/blob/f55e32aa91734687e79cef8c63889ea892f8b0f0/src/Resultats.lean).
 
